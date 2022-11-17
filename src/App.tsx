@@ -21,12 +21,21 @@ function App() {
         const filteredTasks = tasks.filter(task => task.id !== taskId);
         setTasks(filteredTasks);
     }
+    const handleEditTask = (taskId: number, title: string) => {
+        const changeTaskTitle = tasks.map(task => task.id === taskId
+            ? {...task, title: title.trim()}
+            : task
+        )
+
+        setTasks(changeTaskTitle)
+    }
 
     return (
         <div className="App">
             <TodoList tasks={tasks}
                       handleAddTask={handleAddTask}
                       handleRemoveTask={handleRemoveTask}
+                      handleEditTask={handleEditTask}
             />
         </div>
     );
