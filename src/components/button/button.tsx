@@ -10,7 +10,7 @@ const Button = ({children, onClick, className}: ButtonType) => {
     const handleOnClick = () => onClick();
 
     return (
-        <button className={className}
+        <button style={{cursor: 'pointer'}} className={className}
                 onClick={handleOnClick}
         >
             {children}

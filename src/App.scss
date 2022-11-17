@@ -1,17 +1,69 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
 .App {
+  padding: 25px;
+
+  .form {
+    display: flex;
+    flex-direction: column;
+
+    input {
+      margin: 5px 0;
+      padding: 10px;
+    }
+
+    .btn {
+      padding: 10px;
+      width: 270px;
+      border-radius: 10px;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      background: aliceblue;
+
+      &:hover {
+        box-shadow: 2px 2px 9px 1px cornflowerblue;
+      }
+    }
+
+    .errorMessage {
+      color: red;
+    }
+  }
 
   .taskWrapper {
     display: flex;
+    flex-wrap: wrap;
 
     .taskBlock {
-      min-height: 200px;
+      padding: 10px;
+      min-height: 250px;
       min-width: 200px;
+      max-width: 200px;
       background-color: #849cbd;
       margin: 5px;
 
       .taskHeader {
         display: flex;
         justify-content: space-between;
+
+        .taskTitle {
+          width: calc(100% - 80px);
+          overflow-wrap: break-word;
+          color: white;
+          letter-spacing: 0.1em;
+        }
+      }
+
+      .taskTime {
+        margin: 10px 0;
+        color: ghostwhite;
+      }
+
+      .taskDesc {
+        overflow-wrap: break-word;
       }
     }
   }

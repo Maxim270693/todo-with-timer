@@ -3,5 +3,5 @@ export type TasksType = {
     title: string
     description: string
     timeEnd: string
-    files: ''
+    files: string
 }
