@@ -1,0 +1,18 @@
+.App {
+
+  .taskWrapper {
+    display: flex;
+
+    .taskBlock {
+      min-height: 200px;
+      min-width: 200px;
+      background-color: #849cbd;
+      margin: 5px;
+
+      .taskHeader {
+        display: flex;
+        justify-content: space-between;
+      }
+    }
+  }
+}
