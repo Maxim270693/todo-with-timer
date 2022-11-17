@@ -17,11 +17,16 @@ function App() {
 
         setTasks([...tasks, newTask])
     }
+    const handleRemoveTask = (taskId: number) => {
+        const filteredTasks = tasks.filter(task => task.id !== taskId);
+        setTasks(filteredTasks);
+    }
 
     return (
         <div className="App">
             <TodoList tasks={tasks}
                       handleAddTask={handleAddTask}
+                      handleRemoveTask={handleRemoveTask}
             />
         </div>
     );

@@ -55,6 +55,17 @@
           color: white;
           letter-spacing: 0.1em;
         }
+
+        .taskBlockBtn {
+          padding: 3px 7px;
+          border-radius: 8px;
+          margin-left: 3px;
+
+          &:hover {
+            background-color: brown;
+            color: #fff;
+          }
+        }
       }
 
       .taskTime {

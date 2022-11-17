@@ -6,9 +6,10 @@ import Form from "../form/form";
 type TodoListType = {
     tasks: TasksType[]
     handleAddTask: (title: string, description: string, timeEnd: string, files: string) => void
+    handleRemoveTask: (taskId: number) => void
 }
 
-const TodoList = ({tasks, handleAddTask}: TodoListType) => {
+const TodoList = ({tasks, handleAddTask, handleRemoveTask}: TodoListType) => {
     return (
         <>
             <Form handleAddTask={handleAddTask}/>
@@ -16,7 +17,9 @@ const TodoList = ({tasks, handleAddTask}: TodoListType) => {
                 {
                     tasks.map(task => {
                         return (
-                            <TodoItem task={task}/>
+                            <TodoItem task={task}
+                                      handleRemoveTask={handleRemoveTask}
+                            />
                         )
                     })
                 }
