@@ -4,13 +4,18 @@ type ButtonType = {
     children: ReactNode,
     onClick: () => void
     className?: string
+    disabled?: boolean
 }
 
-const Button = ({children, onClick, className}: ButtonType) => {
+const Button = ({children, onClick, className, disabled}: ButtonType) => {
     const handleOnClick = () => onClick();
 
     return (
-        <button style={{cursor: 'pointer'}} className={className}
+        <button disabled={disabled}
+                style={!disabled
+                    ? {cursor: 'pointer'}
+                    : {cursor: 'not-allowed'}}
+                className={className}
                 onClick={handleOnClick}
         >
             {children}

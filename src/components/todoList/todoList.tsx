@@ -8,9 +8,16 @@ type TodoListType = {
     handleAddTask: (title: string, description: string, timeEnd: string, files: string) => void
     handleRemoveTask: (taskId: number) => void
     handleEditTask: (taskId: number, title: string) => void
+    handleChangeStatus: (taskId: number, isDone: boolean) => void
 }
 
-const TodoList = ({tasks, handleAddTask, handleRemoveTask, handleEditTask}: TodoListType) => {
+const TodoList = ({
+                      tasks,
+                      handleAddTask,
+                      handleRemoveTask,
+                      handleEditTask,
+                      handleChangeStatus
+                  }: TodoListType) => {
     return (
         <>
             <Form handleAddTask={handleAddTask}/>
@@ -21,6 +28,7 @@ const TodoList = ({tasks, handleAddTask, handleRemoveTask, handleEditTask}: Todo
                             <TodoItem task={task}
                                       handleRemoveTask={handleRemoveTask}
                                       handleEditTask={handleEditTask}
+                                      handleChangeStatus={handleChangeStatus}
                             />
                         )
                     })

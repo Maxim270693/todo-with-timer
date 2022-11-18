@@ -37,17 +37,26 @@
     display: flex;
     flex-wrap: wrap;
 
-    .taskBlock {
+    .taskBlock,
+    .taskBlockItem {
       padding: 10px;
       min-height: 250px;
       min-width: 200px;
       max-width: 200px;
-      background-color: #849cbd;
+      background-color: green;
       margin: 5px;
+      border-radius: 10px;
 
       .taskHeader {
         display: flex;
         justify-content: space-between;
+
+        .taskButtons {
+          display: flex;
+          flex-wrap: wrap;
+          justify-content: flex-end;
+          max-height: 65px;
+        }
 
         .taskTitle {
           width: calc(100% - 80px);
@@ -59,7 +68,7 @@
         .taskBlockBtn {
           padding: 3px 7px;
           border-radius: 8px;
-          margin-left: 3px;
+          margin: 0 0 5px 3px;
 
           &:hover {
             background-color: brown;
@@ -76,6 +85,10 @@
       .taskDesc {
         overflow-wrap: break-word;
       }
+    }
+
+    .taskBlockItem {
+      background-color: red;
     }
   }
 }

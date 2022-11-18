@@ -10,6 +10,7 @@ function App() {
         const newTask: TasksType = {
             id: (new Date()).getTime(),
             title: title.trim(),
+            isDone: true,
             description,
             timeEnd,
             files,
@@ -29,6 +30,14 @@ function App() {
 
         setTasks(changeTaskTitle)
     }
+    const handleChangeStatus = (taskId: number, isDone: boolean) => {
+        const changeTaskStatus = tasks.map(task => task.id === taskId
+            ? {...task, isDone: !isDone}
+            : task
+        )
+
+        setTasks(changeTaskStatus)
+    }
 
     return (
         <div className="App">
@@ -36,6 +45,7 @@ function App() {
                       handleAddTask={handleAddTask}
                       handleRemoveTask={handleRemoveTask}
                       handleEditTask={handleEditTask}
+                      handleChangeStatus={handleChangeStatus}
             />
         </div>
     );
