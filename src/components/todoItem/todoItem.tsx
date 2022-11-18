@@ -1,6 +1,6 @@
 import React, {ChangeEvent, useEffect, useState} from 'react';
 import Button from "../button/button";
-import {TasksType} from "../../types/types";
+import {ImageUrlType, TasksType} from "../../types/types";
 import dayjs from "dayjs";
 
 type TodoItemType = {
@@ -8,10 +8,17 @@ type TodoItemType = {
     handleRemoveTask: (taskId: number) => void
     handleEditTask: (taskId: number, title: string) => void
     handleChangeStatus: (taskId: number, isDone: boolean) => void
+    imageURL?: ImageUrlType
 }
 
-const TodoItem = ({task, handleRemoveTask, handleEditTask, handleChangeStatus}: TodoItemType) => {
-    const {id, title, isDone, timeEnd, description, files} = task;
+const TodoItem = ({
+                      task,
+                      handleRemoveTask,
+                      handleEditTask,
+                      handleChangeStatus,
+                      imageURL
+                  }: TodoItemType) => {
+    const {id, title, isDone, timeEnd, description} = task;
 
     const [editMode, setEditMode] = useState(false);
     const [editTitle, setEditTitle] = useState('');
@@ -25,16 +32,14 @@ const TodoItem = ({task, handleRemoveTask, handleEditTask, handleChangeStatus}: 
     const handleOnEditTitle = (event: ChangeEvent<HTMLInputElement>) => {
         setEditTitle(event.currentTarget.value);
     };
-    const handleChangeTaskStatus = () => {
-        handleChangeStatus(id, isDone)
-    }
+    const handleChangeTaskStatus = () => handleChangeStatus(id, isDone);
 
-    const day = dayjs()
-    const fullDay = day.format('YYYY-MM-DD')
+    const day = dayjs();
+    const fullDay = day.format('YYYY-MM-DD');
 
     const time = timeEnd.replace('T', ' ');
-    const fullDate = `${fullDay} ${currentTime}`
-    const isCorrectTime = time >= fullDate
+    const fullDate = `${fullDay} ${currentTime}`;
+    const isCorrectTime = time >= fullDate;
 
     useEffect(() => {
         const intervalId = setInterval(() => {
@@ -55,8 +60,14 @@ const TodoItem = ({task, handleRemoveTask, handleEditTask, handleChangeStatus}: 
                         />
                         : <h5 className="taskTitle">{title}</h5>
                 }
+
                 <div className="taskButtons">
-                    <Button className="taskBlockBtn" onClick={changeTaskTitle}>edit</Button>
+                    <Button className="taskBlockBtn"
+                            onClick={changeTaskTitle}
+                    >
+                        edit
+                    </Button>
+
                     {
                         !editMode &&
                         <>
@@ -76,7 +87,12 @@ const TodoItem = ({task, handleRemoveTask, handleEditTask, handleChangeStatus}: 
 
             <div className="taskTime">{time}</div>
             <div className="taskDesc">{description}</div>
-            <div>{files}</div>
+            <div>
+                <img src={imageURL ? imageURL.image : ''}
+                     alt="photo"
+                     className="imageWrapper"
+                />
+            </div>
         </div>
     );
 };

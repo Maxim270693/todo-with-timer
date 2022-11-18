@@ -4,5 +4,9 @@ export type TasksType = {
     isDone: boolean
     description: string
     timeEnd: string
-    files: string
+}
+
+export type ImageUrlType = {
+    image: string;
+    file: File
 }

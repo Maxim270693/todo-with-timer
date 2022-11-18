@@ -1,21 +1,23 @@
-import React, {ChangeEvent, FormEvent, useState} from 'react';
+import React, {ChangeEvent, FormEvent, useRef, useState} from 'react';
 import Button from "../button/button";
 
 type FormType = {
-    handleAddTask: (title: string, description: string, timeEnd: string, files: string) => void
+    handleAddTask: (title: string, description: string, timeEnd: string) => void
+    onImageChange: (event: ChangeEvent<HTMLInputElement>) => void
 }
 
-const Form = ({handleAddTask}: FormType) => {
+const Form = ({handleAddTask, onImageChange}: FormType) => {
     const [formInput, setFormInput] = useState({
         title: '',
         description: '',
         timeEnd: '',
-        files: '',
     });
 
     const [error, setError] = useState('');
 
-    const {title, description, timeEnd, files} = formInput;
+    const {title, description, timeEnd} = formInput;
+
+    const fileContent = useRef<HTMLInputElement>(null);
 
     const onChangeInputsHandler = (event: ChangeEvent<HTMLInputElement>) => {
         setFormInput(prev => {
@@ -38,12 +40,11 @@ const Form = ({handleAddTask}: FormType) => {
             return setError('Поле Время не может быть пустым')
         }
 
-        handleAddTask(title, description, timeEnd, files)
+        handleAddTask(title, description, timeEnd)
         setFormInput({
             title: '',
             description: '',
             timeEnd: '',
-            files: '',
         })
     }
 
@@ -67,7 +68,10 @@ const Form = ({handleAddTask}: FormType) => {
                    value={(timeEnd || '').toString().substring(0, 16)}
                    onChange={onChangeInputsHandler}
             />
+
             <input type="file"
+                   onChange={onImageChange}
+                   ref={fileContent}
             />
 
             {error && <div className="errorMessage">{error}</div>}

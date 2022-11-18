@@ -6,14 +6,13 @@ import {TasksType} from "./types/types";
 function App() {
     const [tasks, setTasks] = useState<TasksType[]>([])
 
-    const handleAddTask = (title: string, description: string, timeEnd: string, files: string) => {
+    const handleAddTask = (title: string, description: string, timeEnd: string) => {
         const newTask: TasksType = {
             id: (new Date()).getTime(),
             title: title.trim(),
             isDone: true,
             description,
             timeEnd,
-            files,
         }
 
         setTasks([...tasks, newTask])
